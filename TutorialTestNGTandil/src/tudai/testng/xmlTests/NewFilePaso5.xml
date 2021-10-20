@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /*************** PASO 5 ******************/
+/**********  testng.xml *******************/-->
+<!-- SE DEFINE LA SUITE -->
+<suite name="Suite con el solo objetivo de demostrar la tecnologia" verbose="1">
+    <!-- El siguiente parametro se pasa a todos los tests de la SUITE -->
+    <!-- PARAMETRO CON EL NOMBRE DEL TESTER -->
+    <parameter name="tester-name" value="Quique" />
+    <test name="Probar con el mismo codigo de JUnit">
+    <!-- SE DEFINEN CUALES SON LAS CLASES A PROBAR -->
+        <classes>
+            <class name="tudai.testng.test.ProgramaTest">
+            <!-- SE DEFINEN CUALES SON LOS MÉTODOS PARTICULARES A PROBAR -->
+                <methods>
+                    <include name="getCantOcurrencias" />
+                    <include name="testUsr" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+  </suite>
+  
+  <!-- SE DEBE CORRER ESTE XML CON TESTNG -->
+  
+<!--/************ HASTA ACA *****************/-->
