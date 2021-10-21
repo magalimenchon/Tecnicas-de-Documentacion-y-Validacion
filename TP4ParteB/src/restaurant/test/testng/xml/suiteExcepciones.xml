@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<!-- 	/**
+	 * 9. En un archivo excepciones.xml implemente una suite de testeo que contenga los
+		tests de las excepciones SinSaldoException y SinSuficientesIngredientesException
+	 */ -->
+<suite name="Suite para exceptions" verbose="1">
+	<!-- El siguiente parametro se pasa a todos los tests de la SUITE -->
+	<parameter name="tester-name" value="mag" />
+	<test name="Testeo de excepciones">
+		<packages>
+			<package name="restaurant.test.testng">
+				<classes>
+					<class name="Test">
+						<methods>
+							   <include name="testThrowSinSaldoException" />
+                    			<include name="testThrowSinSuficientesIngredientesException" />
+						</methods>
+					</class>
+				</classes>
+			</package>
+		</packages>
+	</test>
+</suite>

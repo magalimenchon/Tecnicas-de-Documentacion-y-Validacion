@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<!-- 	/**
+	 * * 10. En un archivo recetas.xml, implemente un test que permita asegurarse que no
+		existen recetas cuyo nombre no comienzan con determinada letra configurada como
+		parámetro/ -->
+<suite name="Suite para Recetas Nombre Letra" verbose="1">
+	<parameter name="tester-name" value="mag" />
+	<test name="Testeo de Recetas Nombre Letra">
+	<!-- El siguiente parametro se pasa a todos los tests de la SUITE -->
+	<parameter name="letra-buscada" value="A" />
+		<packages>
+			<package name="restaurant.test.testng">
+				<classes>
+					<class name="Test">
+						<methods>
+							   <include name="testPrimerLetraDistinta" />
+						</methods>
+					</class>
+				</classes>
+			</package>
+		</packages>
+	</test>
+</suite>
