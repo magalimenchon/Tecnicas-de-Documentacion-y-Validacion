@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-16">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="C:/eclipse-jee-2021-06-R-win32-x86_64/eclipse/plugins/org.junit_4.13.0.v20200204-1500.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://junit.org/junit4/javadoc/latest/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/eclipse-jee-2021-06-R-win32-x86_64/eclipse/plugins/org.testng_7.4.0.r202105021533.jar" sourcepath="C:/eclipse-jee-2021-06-R-win32-x86_64/eclipse/plugins/org.testng.source_7.4.0.r202105021533.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
