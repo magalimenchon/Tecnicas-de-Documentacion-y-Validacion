@@ -26,7 +26,7 @@ public class Tests {
 	 * 
 	 * @param count
 	 */
-	@BeforeClass
+	 @BeforeClass
 	//Se definen posibles opciones de ingredientes
 	public void beforeClassDatosIngredientes(@Optional("10") int count) {
 		cantIngredientes = count;
@@ -37,6 +37,14 @@ public class Tests {
 		listaTotalIngredientes.add(new Ingrediente("papa", "kg", (int) (Math.random())));
 		listaTotalIngredientes.add(new Ingrediente("huevo", "un", (int) (Math.random())));
 		listaTotalIngredientes.add(new Ingrediente("fideos", "kg", (int) (Math.random())));
+		
+		for(int i = 0; i < listaTotalIngredientes.size(); i++) {
+			ItemReceta itemActual = new ItemReceta(listaTotalIngredientes.get(i), (int) Math.random() * cantIngredientes);
+			int recetaSeleccionada = (int) (Math.random() * listaTotalRecetas.size());
+			listaTotalRecetas.get(recetaSeleccionada).addIngrediente(itemActual);
+		}
+		
+		
 	}
 
 	/** 
@@ -61,7 +69,7 @@ public class Tests {
 	 * 2. Implemente un generador de Recetas con los ingredientes del item anterior,
 	 * pero con cantidades aleatorias
 	 */
-	@BeforeClass
+	@BeforeSuite
 	//Se definen posibles opciones de recetas
 	public void beforeClassDatosRecetas(@Optional("10") int count) {
 		cantRecetas = count;
@@ -71,15 +79,8 @@ public class Tests {
 		listaTotalRecetas.add(new Receta("hamburguesa grande", 5));
 		listaTotalRecetas.add(new Receta("papas fritas", 7));
 		
-		Iterator<Ingrediente> iteradorIngredientes = generarIngredientes();
-		while(iteradorIngredientes.hasNext()) {
-			ItemReceta itemActual = new ItemReceta(iteradorIngredientes.next(), (int) Math.random() * cantIngredientes);
-			int recetaSeleccionada = (int) (Math.random() * cantRecetas);
-			listaTotalRecetas.get(recetaSeleccionada).addIngrediente(itemActual);
-		}
-		
 	}
-	
+
 	// Genera un iterador sobre los datos
 	@DataProvider(name = "generarRecetas")
 	public Iterator<Receta> generarRecetas() {
@@ -95,7 +96,7 @@ public class Tests {
 	/**
 	 * 3. Implemente un generador de Productos con 10 items
 	 */
-	@BeforeClass
+	@BeforeSuite
 	//Se definen posibles opciones de recetas
 	public void beforeClassDatosProductos(@Optional("10") int count) {
 		cantProductos = count;
@@ -146,13 +147,14 @@ public class Tests {
 	 public void testGananciaMayor(Producto p) {
 		float ganancia = p.getPrecioUnitarioVenta() - p.getPrecioUnitarioCompra();
 		float parametroDado = (float) (Math.random() * 1000 +1);
-		assertTrue(ganancia > parametroDado);
+		parametroDado = 1;
+		assertTrue(ganancia > parametroDado, "Falla: La ganancia es menor al parametro dado");
 	}
 	/**
 	 * 7. Pruebe si es posible descontar cantidades de ingredientes aun cuando esta cantidad
 		es < 0. ¿Como se actuaría ante esta situación?
 	 */
-	  @Test(dataProvider = "generadoringredientes")
+	  @Test(dataProvider = "generarIngredientes")
 	  public void testDeStressCantidadStockDeIngrediente(Ingrediente i) {
 		  i.consumirStock(i.getStock() - (int) Math.random() * 1000 +1);
 		  assertTrue(i.getStock() >= 0);
@@ -185,10 +187,12 @@ public class Tests {
 		existen recetas cuyo nombre no comienzan con determinada letra configurada como
 		parámetro
 	 */
+	 // @Parameters({ "letra-buscada" })
 	  @Test(dataProvider = "generarRecetas")
-	  @Parameters({ "letra-buscada" })
-	  public void testPrimerLetraDistinta(@Optional("L") String letra, Receta r) {
+	  public void testPrimerLetraDistinta(Receta r/*, @Optional("L") String letra*/) {
 
-			  assertFalse(r.getNombreInterno().startsWith(letra));  
+		  String letra = "L";
+			  assertFalse(r.getNombreInterno().startsWith(letra),
+					      "Falla: la receta " + r + "Comienza con la letra: " + letra);  
 	  }
 }
